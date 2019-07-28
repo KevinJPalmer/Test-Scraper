@@ -1,1 +1,15 @@
-<h1>Example App: Home</h1>
+    <div id="wrapper">
+      <h1>Sports Illustrated Scraper</h1>
+      {{#each articles}}
+      <div class="card mb-3">
+        <div class="card-header">
+          {{this.title}}
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{this.title}}</h5>
+          <a href="{{this.link}}" class="btn btn-primary" target="_blank">View Article</a>
+          <button class="btn btn-success save-article-btn" data-id={{this._id}} data-title="{{this.title}}">Save</button>
+        </div>
+      </div>
+      {{/each}}
+    </div>

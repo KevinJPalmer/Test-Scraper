@@ -1,0 +1,17 @@
+    <div id="articles">
+      <h1>Saved Articles</h1>
+      {{#each savedArticles}}
+      <div class="card mb-3">
+        <div class="card-header">
+          {{this.title}}
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{this.title}}</h5>
+          <a href="{{this.link}}" class="btn btn-warning" target="_blank">Read Article</a>
+          <button class="btn btn-success notes-btn" data-title="{{this.title}}" data-id={{this._id}}>View/Add Notes</button>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+    <div id="notes">
+    </div>
