@@ -8,11 +8,13 @@ var PORT = process.env.PORT || 3000;
 
 //initiate express
 var app = express();
-//router
-var router = express.Router();
 
 //designate public folder
 app.use(express.static(__dirname + "/public"));
+
+// Import routes and give the server access to them.
+var htmlRoutes = require("./routes/htmlRoutes.js");
+var apiRoutes = require("./routes/apiRoutes");
 
 //handlebars connection
 app.engine("handlebars", expressHandlebars({
@@ -26,10 +28,7 @@ app.use(bodyParser.urlencoded({
   extended: false
 }));
 
-//pass through router
-app.use(router);
 
-//
 var db = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 
 //connect mongoose to the db
@@ -41,6 +40,10 @@ mongoose.connect(db, { useNewUrlParser: true }, function(error) {
     console.log("mongoose is connected");
   }
 });
+
+app.use(htmlRoutes);
+app.use(apiRoutes);
+
 //listen to port
 app.listen(PORT, function() {
   console.log("listening on port:" + PORT);
